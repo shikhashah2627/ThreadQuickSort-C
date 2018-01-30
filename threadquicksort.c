@@ -8,36 +8,33 @@ struct  sortvalues
 	int  left;
 	int  right;
 };
+void quick_sort(int arr[], int p, int q);
 
 // thread function calling quicksort
 void* qsthreadfunction(void *init)
 {
 	struct  sortvalues *start = init;
-	quick_sort(start ->array , start ->left , start ->right);
+	quick_sort(start->array , start->left , start->right);
 	return  NULL;
 }
 
 void swap(int *a, int *b)
-
 {
-
-    int temp;
-    temp = *a;
-    *a = *b;
-    *b = temp;
-
+	int temp;
+  temp = *a;
+  *a = *b;
+	*b = temp;
 }
 
 int partion(int arr[], int p, int r)
 
 {
+  int pivotIndex = p + rand()%(r - p + 1); //generates a random number as a pivot
+  int pivot;
+  int i = p - 1;
+  int j;
 
-    int pivotIndex = p + rand()%(r - p + 1); //generates a random number as a pivot
-    int pivot;
-    int i = p - 1;
-    int j;
-
-    pivot = arr[pivotIndex];//gets pivot value
+  pivot = arr[pivotIndex];//gets pivot value
 	printf("pivot is %d \n %d \n",pivot,arr[r]);
 
     swap(&arr[pivotIndex], &arr[r]);
@@ -101,10 +98,11 @@ int main()
 
   int i;
 	int sizeforsorting;
-	int *arr = (int*) malloc(sizeof(int)*sizeforsorting);
-	printf("Please enter the size of array for sorting ");
-	scanf("%d",&sizeforsorting);
 
+	printf("Please enter the size of array for sorting ");
+
+	scanf("%d",&sizeforsorting);
+	int *arr = (int*) malloc(sizeof(int)*sizeforsorting);
 
     for (i = 0; i < sizeforsorting; i++)
 	{
